@@ -3,7 +3,7 @@
 """
 Created on Wed Nov 14 21:02:25 2018
 
-@author: royzhang
+@author: Ruoyu Zhang (University of Virginia)
 """
 
 # From PRISM ftp server to download cliamte data
@@ -148,10 +148,10 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
             ftp.cwd("../")
             
     ftp.quit()
-#PRISMdownload('my282539028@gmail.com','d',['ppt','tmax','tmin'], 2002,2003, '/Users/royzhang/Documents/Hydroinformatics/FinalProject', unzip=True)
+# if you want to test you can comment lines below
+#PRISMdownload('xxx@gmail.com','d',['ppt','tmax','tmin'], 2002,2003, savedir= ???, unzip=True)
 
 # Using Google map elevation API to get the elevation data for SWAT
-# Can also use the DEM to load???
 def get_elevation(lat, lng, Google_API=None):
     '''
     Function get_elevation currently uses Google Map Elevation API to get the elevation at a coordinate.
