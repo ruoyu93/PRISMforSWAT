@@ -1,5 +1,5 @@
 # PRISMforSWAT
-A set of functions for using PRISM (http://prism.oregonstate.edu) dataset to prepare weather input data for SWAT model (Arnold et al., 1998) built by Python 2.7.
+A set of functions for using PRISM (http://prism.oregonstate.edu) dataset to prepare weather input data for SWAT model (Arnold et al., 1998) built via. Python 2.7.
 
 If users ONLY want to download PRISM data (either monthly or daily), please use the function "PRISMdownload" and follow the intructions in the .py file
 
