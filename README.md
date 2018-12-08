@@ -5,7 +5,7 @@ If users ONLY want to download PRISM data (either monthly or daily), please use 
 
 If users want to prepare the data, "generate_SWATweather" will automatically download the PRISM daily precipitation (ppt), maximum and minimum temperature (tmax and tmin) and create the weather tables.
 
-
+For details, check the introductions in the .py file under each function.
 
 Reference
 
