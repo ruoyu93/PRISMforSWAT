@@ -319,7 +319,7 @@ def generate_SWATweather(WatershedPath, PRISMfolderPath, OutputFolder, yearstart
     line = ','.join(['id', 'name', 'lat', 'long', 'elevation'])
     table_tot.write(line+"\n")
     for i in range(tables_ls[1].count()[0]):  # number of rows
-        a = tables_ls[1].loc[[i]]   # get each row for tmax
+        a = tables_ls[1].loc[[i]]   # get each row for tmax and tmin
         b = tables_ls[2].loc[[i]]
         line1 = ",".join([str(i), "t"+str(i), str(round(a['y'],5)), str(round(a['x'],5)), str(get_elevation(round(a['y'],7), round(a['x'],7)))])
         table_tot.write(line1+"\n")
@@ -334,8 +334,8 @@ def generate_SWATweather(WatershedPath, PRISMfolderPath, OutputFolder, yearstart
     table_tot = open("pcp.txt","w")
     line = ','.join(['id', 'name', 'lat', 'long', 'elevation'])
     table_tot.write(line+"\n")
-    for i in range(tables_ls[1].count()[0]):  # number of rows
-        a = tables_ls[0].loc[[i]]   # get each row for tmax
+    for i in range(tables_ls[0].count()[0]):  # number of rows
+        a = tables_ls[0].loc[[i]]   # get each row for ppt
         line1 = ",".join([str(i), "p"+str(i), str(round(a['y'],5)), str(round(a['x'],5)), str(get_elevation(round(a['y'],7), round(a['x'],7)))])
         table_tot.write(line1+"\n")
         table_station = open("p"+str(i)+".txt", "w")
@@ -347,9 +347,7 @@ def generate_SWATweather(WatershedPath, PRISMfolderPath, OutputFolder, yearstart
     table_tot.close()
     return tables_ls
 
-#WatershedPath = 
-#PRISMfolderPath = 
-#OutputFolder = 
 #a = generate_SWATweather(WatershedPath, PRISMfolderPath, OutputFolder, 2002, 2003)
+#a is the list containing three tables for data of ppt[0], tmax[1], and tmin[2]
 
     
