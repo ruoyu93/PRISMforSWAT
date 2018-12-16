@@ -17,6 +17,7 @@ PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt
 3. This function will download zip files of precipitation (ppt), maximum and minimum temperature (tmax and tmin) for the contiguous US from 2000 to 2005 to the path C:/Downloads.
 
 ![Figure 1. Folder Structure which PRISMdownload function will create](https://github.com/ruoyu93/PRISMforSWAT/blob/master/folderstructure.png?raw=true)
+
 Figure 1. Folder Structure which PRISMdownload function will create
 
 Use of “generate_SWATweather”:
