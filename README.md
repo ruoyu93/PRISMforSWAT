@@ -19,7 +19,7 @@ PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt
 
 
 Use of “generate_SWATweather”
-Example:
+
 generate_SWATweather(WatershedPath = “C:/SWAT/watershed.shp", PRISMfolderPath = “C:/Downloads/PRISM”, OutputFolder = “C:/SWAT/PRISMdata”, 2000, 2005)
 
 1. Developer's Google Earth Engine API is used, and is likely to be disabled. Recommend users to have an account from Google and activate Elevation API.
