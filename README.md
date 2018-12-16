@@ -20,7 +20,8 @@ PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt
 
 Figure 1. Folder Structure which PRISMdownload function will create
 
-Use of “generate_SWATweather”:
+
+## Use of “generate_SWATweather”:
 
 generate_SWATweather(WatershedPath = “C:/SWAT/watershed.shp", PRISMfolderPath = “C:/Downloads/PRISM”, OutputFolder = “C:/SWAT/PRISMdata”, 2000, 2005)
 
