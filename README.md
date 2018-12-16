@@ -16,7 +16,7 @@ PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt
 2. Savedir, unzip, and keepzip are optional. Savedir is the saving directory and highly recommended to customized by users, or the script will download data and create folder structure (figure 1) in current working directory. Unzip and keepzip are False and True by default, but unzip is highly recommended to be set as True to extract download zip files of PRISM data.
 3. This function will download zip files of precipitation (ppt), maximum and minimum temperature (tmax and tmin) for the contiguous US from 2000 to 2005 to the path C:/Downloads.
 
-
+![Figure 1. Folder Structure which PRISMdownload function will create](https://github.com/ruoyu93/PRISMforSWAT/blob/master/folderstructure.png?raw=true)
 
 Use of “generate_SWATweather”
 
