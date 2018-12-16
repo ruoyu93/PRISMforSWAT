@@ -8,7 +8,7 @@ If users want to prepare the data, "generate_SWATweather" will automatically dow
 For details, check the introductions in the .py file under each function.
 
 # Examples
-Use of “PRISMdownload”:
+### Use of “PRISMdownload”:
 
 PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt’, ‘tmax’, ‘tmin’], 2000, 2005, savedir = “C:/Downloads”, unzip = False, keepzip = True)
 
@@ -21,7 +21,7 @@ PRISMdownload(email = xxx@gmail.com, timeinterval = “d”, variables = [‘ppt
 Figure 1. Folder Structure which PRISMdownload function will create
 
 
-## Use of “generate_SWATweather”:
+### Use of “generate_SWATweather”:
 
 generate_SWATweather(WatershedPath = “C:/SWAT/watershed.shp", PRISMfolderPath = “C:/Downloads/PRISM”, OutputFolder = “C:/SWAT/PRISMdata”, 2000, 2005)
 
