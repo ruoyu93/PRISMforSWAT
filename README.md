@@ -28,7 +28,7 @@ generate_SWATweather(WatershedPath = “C:/SWAT/watershed.shp", PRISMfolderPath 
 1. Developer's Google Earth Engine API is used, and is likely to be disabled. Recommend users to have an account from Google and activate Elevation API.
 2. A shapefile of watershed is required (path of file passed to WatershedPath).
 3. PRISM folder has to be the main folder with the structure in figure 1. 
-4. The weather tables will be saved at path “C:/SWAT/PRISMdata” from 2000 to 2005. 
+4. The weather tables will be saved at path “C:/SWAT/PRISMdata” from 2000 (start year) to 2005 (end year). 
 
 
 # Reference
