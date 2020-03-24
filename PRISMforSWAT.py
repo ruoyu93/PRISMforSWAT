@@ -54,15 +54,15 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
     import ftplib as fl
     import zipfile, os
     
-    if unzip is False: print "Your download data are in zip file" 
-    else: print "Your download data will be unzipped"
-    if keepzip is True: print "Your data in zip files are kept"
-    else: print "Your data in zip format will be deleted"
+    if unzip is False: print("Your download data are in zip file") 
+    else: print("Your download data will be unzipped")
+    if keepzip is True: print("Your data in zip files are kept")
+    else: print("Your data in zip format will be deleted")
     if (unzip is False and keepzip is False): 
-        print "No data will be saved.\nOperation is terminated."
+        print("No data will be saved.\nOperation is terminated.")
     if savedir is None:
         savedir = os.getcwd()
-        print "Saving data to", savedir
+        print("Saving data to", savedir)
     os.chdir(savedir)
     folderexist("PRISM")                 # create PRISM folder to store data
     ftp = fl.FTP('prism.nacse.org')   # connect to PRISM FTP serve
@@ -104,7 +104,7 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
                     if keepzip is False:
                         os.remove(fn)
                 ftp.cwd('../')
-                print str(year), "monthly", vari, "DONE"
+                print(str(year), "monthly", vari, "DONE")
             ftp.cwd("../")
             os.chdir("../")
                 
@@ -126,7 +126,7 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
                         continue
                     elif os.path.exists(os.getcwd()+"/"+fn):
                         if unzip is True:
-                            print fn
+                            print(fn)
                             zfile = zipfile.ZipFile(fn)
                             zfile.extractall()
                             zfile.close()
@@ -142,7 +142,7 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
                             zfile.close()
                             if keepzip is False:
                                 os.remove(fn) 
-                print str(year), "daily", vari, "DONE"
+                print(str(year), "daily", vari, "DONE")
                 ftp.cwd("../")
             os.chdir("../")
             ftp.cwd("../")
@@ -152,29 +152,22 @@ def PRISMdownload(email, timeinterval, variables, startyear, endyear, \
 #PRISMdownload('xxx@gmail.com','d',['ppt','tmax','tmin'], 2002,2003, savedir= ???, unzip=True)
 
 # Using Google map elevation API to get the elevation data for SWAT
-def get_elevation(lat, lng, Google_API=None):
+def get_elevation(lat, long):
     '''
-    Function get_elevation currently uses Google Map Elevation API to get the elevation at a coordinate.
-    Users are recommended to have one account/key from Google Earth Engine and activate the elevation API. 
-    
-    *** 1. We highly recommend users to get their own API from Google Earth Engine,
-        as author's key is provided but can be invalid in the future.  
+    Function get_elevation currently uses Opentopodata API to get the elevation at a coordinate.
     
     Parameters:
         lat: latitude of the point
         lng: longitude of the point
-        Google_API: the key of Google Earth Engine with Elevation API activated!!
     '''
-    if abs(lat) > 90 or abs(lng) > 180:
-        print "Your point is out of bounce[-90 < Lat < 90; -180 < Lng < 180]."
+    if abs(lat) > 90 or abs(long) > 180:
+        print("Your point is out of bounce[-90 < Lat < 90; -180 < Lng < 180].")
 
-    import urllib2, json
+    import urllib.request, urllib.error, urllib.parse, json
     ## build the url for the API call
-    ELEVATION_BASE_URL = 'https://maps.googleapis.com/maps/api/elevation/json'
-    URL_PARAMS = "locations=%.7f,%.7f&key=%s" % (lat, lng, "AIzaSyC61eXnJkcWHqCab4r0VzFfDTldR1dYYZU" if Google_API is None else Google_API)
-    url = ELEVATION_BASE_URL + "?" + URL_PARAMS
+    url = 'https://api.opentopodata.org/v1/eudem25m?locations={},{}'.format(lat, long)
 
-    f = urllib2.urlopen(url)
+    f = urllib.request.urlopen(url)
     response = json.load(f)
     #print response
     if response['status'] == 'OK':
@@ -182,7 +175,7 @@ def get_elevation(lat, lng, Google_API=None):
         elevation = float(result["elevation"])
     else:
         elevation = None
-        print "Elevation is NONE,\nPlease get a key for Google Earth Engine and activate Elevation API or correct your coordinate input."
+        print("Elevation is not exist, check if the lat/long are correct")
     return(round(elevation,3))
 
 def dayofyears(yearstart, yearend):
@@ -238,25 +231,25 @@ def generate_SWATweather(WatershedPath, PRISMfolderPath, OutputFolder, yearstart
         file_rasters = [f for f in os.listdir(vari_path) if (f.endswith('.bil') and any(str(x) in f for x in range(yearstart, yearend+1)))]
         if len(file_rasters) < dayofyears(yearstart, yearend):
             ziptest = [f for f in os.listdir(vari_path) if (f.endswith('.zip') and any(str(x) in f for x in range(yearstart, yearend+1)))]
-            print len(ziptest)
+            print(len(ziptest))
             if len(ziptest) > 0:
                 for fn in ziptest:
                     if os.path.exists(vari_path + '/' + fn[:-3]+ "bil"):
                         continue
                     else:
                         fn = vari_path + "/" + fn
-                        print fn
+                        print(fn)
                         zfile = zipfile.ZipFile(fn)
                         zfile.extractall(vari_path)
-                        print "DONE"
+                        print("DONE")
                         zfile.close()
                 file_rasters = [f for f in os.listdir(vari_path) if f.endswith('.bil')]
-                print len(file_rasters)
+                print(len(file_rasters))
             if len(file_rasters) < dayofyears(yearstart,yearend):
-                print "Missing some dates' PRISM data."
-                indi = raw_input("\nWant to download missing data? (Y/N)")
+                print("Missing some dates' PRISM data.")
+                indi = input("\nWant to download missing data? (Y/N)")
                 if indi == "Y":
-                    email = raw_input("Enter an email address to download missing PRISM data.")
+                    email = input("Enter an email address to download missing PRISM data.")
                     PRISMdownload(email, 'd', [vari_path[vari_path.rfind("/")+1:]], yearstart , yearend, \
                             savedir=PRISMfolderPath[:PRISMfolderPath.rfind("/")], unzip=True, keepzip=True)
                     file_rasters = [f for f in os.listdir(vari_path) if (f.endswith('.bil') and any(str(x) in f for x in range(yearstart, yearend+1)))]
